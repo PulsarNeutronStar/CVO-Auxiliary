@@ -42,7 +42,7 @@ class CfgUnitInsignia
 	
 	class CVO_insignia_10_COY
 	{
-		displayName = "CVO 1-0 Company Assistant";
+		displayName = "CVO 1-0 Company";
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-10-COY.paa";
 		textureVehicle = "";
@@ -55,7 +55,16 @@ class CfgUnitInsignia
 		texture = "\cvo_insignia\data\cvo-16-pl-CO.paa";
 		textureVehicle = "";
 	}
-	
+
+	class CVO_insignia_16_PL_SGt
+	{
+		displayName = "CVO 1-6 Platoon Sergant";
+		author = "CVO";
+		texture = "\cvo_insignia\data\cvo-16-pl-TL.paa";
+		textureVehicle = "";
+	}
+
+
 	class CVO_insignia_16_PL
 	{
 		displayName = "CVO 1-6 Platoon";
