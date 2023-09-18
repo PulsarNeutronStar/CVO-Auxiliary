@@ -54,7 +54,7 @@ class CfgFunctions
 		{
 			class fullHeal 
 			{
-				file = "cvo_others\medical\fnc_fullHeal.sqf";  
+				file = "cvo_others\medical\functions\fnc_fullHeal.sqf";  
 			};
 		};
 	}; 
