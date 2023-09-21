@@ -18,8 +18,8 @@
 		Returns False when <_target> is not defined.
 
 	Examples:
-		[ourMedicalVehicle,     60, 1] call cvo_others_fnc_fullHeal;	// Adds Full Health Check on a single object
-		["mod_vehicle_medical", 30, 0] call cvo_others_fnc_fullHeal;	// Adds Full Health Check on all objects of this classname
+		[ourMedicalVehicleObject] 					call CVO_Others_fnc_fullHeal;	// Adds Full Health Check on a single object
+		["mod_vehicle_medical_classname", 30, 0] 	call CVO_Others_fnc_fullHeal;	// Adds Full Health Check on all objects of this classname and disables the easteregg
 */
 
 
@@ -28,38 +28,44 @@
 params [
 	["_target",		"", 	["",objNull]],
 	["_duration", 	30, 	[0]			],
-	["_chance", 	5, 		[0]			]
+	["_chance", 	1, 		[0]			]
 ];
-
 if (_target isEqualTo "") exitWith {false};
-private _targetType;
-
 
 // Here you define the code you want to execute, in this case, via a progress bar
-_code = {
-	if (round random 100 < _chance) then {
-		playSound3D [getMissionPath "cvo_others\medical\medical_healsound.ogg", player];
-	};
-	[{
-		[
-			"Get Treated...",												// Title of progressBar
-			_duration,																// Duration of progressBar in secounds
-			{true},															// Condition, will check every frame
-			{
-				[player] call ace_medical_treatment_fnc_fullHealLocal;		// The actual fucking code
-			}																// codeblock to be executed on completion
-		] call CBA_fnc_progressBar;											// Executing a CBA progressBar from an Ace Interaction results in crash. Delay execution by 1 frame!!!
-	}] call CBA_fnc_execNextFrame;											// <- this will delay the execution by 1 Frame. 
-}; 																			// This is the code you want the interaction to execute.
 
+ private _code = {
+
+	params ["_target", "_player", "_parameter"];
+	private _dur = _parameter # 0;
+	private _egg = _parameter # 1;
+
+	if (round random 100 < _egg) then {
+		playSound3D ["cvo\auxiliary\others\medical\medical_healsound.ogg", _target];
+	};
+    [
+        _dur,                              	// Total Time (in game "time" seconds) <NUMBER>
+        [],                                     // Arguments, passed to condition, fail and finish <ARRAY>
+        {
+            systemChat "Finish Start";
+			[_player] call ace_medical_treatment_fnc_fullHealLocal;
+            hint "You have been treated!";
+        },                                      // On Finish:  Code called or STRING raised as event. <CODE, STRING>
+        {hint "You have been interrupted!"},    // On Failure: Code called or STRING raised as event. <CODE, STRING>
+        "Get Treated..."                       // (Optional) Localized Title <STRING>
+    ] call ace_common_fnc_progressBar;
+};
 
 // Here we create the action which we later attach to something
 _cvo_fullAceHeal = [
 	"CVO_FullHeal",									// Action Name
 	"Get Full Health Check",						// Name for the ACE Interaction Menu
-	"cvo_others\medical\redCrystal.paa",						// custom Icon
-	_code,											// Statement - the coe you're executing
-	{true}											// Condition
+	"cvo\auxiliary\others\medical\redCrystal.paa",	// custom Icon
+	_code,											// Statement - the code you're executing
+	{true},											// Condition
+	{},												// Insert Children
+	[_duration, _chance]							// action parameters
+
 ] call ace_interact_menu_fnc_createAction;
 
 switch (typeName _target) do {
