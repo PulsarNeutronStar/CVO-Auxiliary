@@ -46,7 +46,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-10-COY.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_16_PL_CO
 	{
@@ -54,7 +54,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-16-pl-CO.paa";
 		textureVehicle = "";
-	}
+	};
 
 	class CVO_insignia_16_PL_SGt
 	{
@@ -62,7 +62,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-16-pl-TL.paa";
 		textureVehicle = "";
-	}
+	};
 
 
 	class CVO_insignia_16_PL
@@ -71,7 +71,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-16-pl.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_16_PL_MED
 	{
@@ -79,7 +79,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-16-pl-med.paa";
 		textureVehicle = "";
-	}
+	};
 
 	class CVO_insignia_16_PL_ENG
 	{
@@ -87,7 +87,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-16-pl-eng.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	
 	class CVO_insignia_11_SL
@@ -96,7 +96,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-11-SL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_11_TL
 	{
@@ -104,7 +104,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-11-TL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_11_PVT
 	{
@@ -112,7 +112,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-11.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_11_CLS
 	{
@@ -120,7 +120,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-11-MED.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_11_ENG
 	{
@@ -128,7 +128,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-11-ENG.paa";
 		textureVehicle = "";
-	}
+	};
 
 	class CVO_insignia_12_SL
 	{
@@ -136,7 +136,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-12-SL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_12_TL
 	{
@@ -144,7 +144,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-12-TL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_12_PVT
 	{
@@ -152,7 +152,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-12.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_12_CLS
 	{
@@ -160,7 +160,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-12-MED.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_12_ENG
 	{
@@ -168,7 +168,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-12-ENG.paa";
 		textureVehicle = "";
-	}
+	};
 
 	class CVO_insignia_13_SL
 	{
@@ -176,7 +176,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-13-SL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_13_TL
 	{
@@ -184,7 +184,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-13-TL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_13_PVT
 	{
@@ -192,7 +192,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-13.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_13_CLS
 	{
@@ -200,7 +200,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-13-MED.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_13_ENG
 	{
@@ -208,7 +208,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-13-ENG.paa";
 		textureVehicle = "";
-	}
+	};
 
 	class CVO_insignia_14_SL
 	{
@@ -216,7 +216,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-14-SL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_14_TL
 	{
@@ -224,7 +224,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-14-TL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_14_PVT
 	{
@@ -232,7 +232,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-14.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_14_CLS
 	{
@@ -240,7 +240,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-14-MED.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_14_ENG
 	{
@@ -248,7 +248,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-14-ENG.paa";
 		textureVehicle = "";
-	}
+	};
 
 	class CVO_insignia_15_SL
 	{
@@ -256,7 +256,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-15-SL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_15_TL
 	{
@@ -264,7 +264,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-15-TL.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_15_PVT
 	{
@@ -272,7 +272,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-15.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_15_CLS
 	{
@@ -280,7 +280,7 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-15-MED.paa";
 		textureVehicle = "";
-	}
+	};
 	
 	class CVO_insignia_15_ENG
 	{
@@ -288,6 +288,6 @@ class CfgUnitInsignia
 		author = "CVO";
 		texture = "\cvo_insignia\data\cvo-15-ENG.paa";
 		textureVehicle = "";
-	}
+	};
 
 };

@@ -19,7 +19,7 @@ class CfgPatches
 
         // List of weapons (CfgWeapons classes) contained in the addon.
         weapons[] = {};
-    }
+    };
 };
 
 
