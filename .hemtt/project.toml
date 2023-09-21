@@ -1,13 +1,14 @@
 name = "24th Chorni Voron - Auxiliary Mod"
-prefix = "cvo"
+prefix = "auxiliary"
 
-mainprefix = "z"
+mainprefix = "cvo"
 
 [files]
 include = [
     "mod.cpp",      # These files are copied to the build directory by default
     "meta.cpp",     # They do not need to be added to your list
     "LICENSE",
+    "/img/",
     "logo_ca.paa",
     "logo_co.paa",
 ]
@@ -45,7 +46,7 @@ parameters = [
     "-noSplash",            # They do not need to be added to your list
     "-showScriptErrors",    # You can add additional parameters here
     "-debug",
-    "-filePatching",
+#    "-filePatching",
     "-window",
 ]
 

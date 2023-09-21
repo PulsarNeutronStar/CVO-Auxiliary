@@ -6,7 +6,7 @@ class CfgPatches {
         name = "CVO Insignias";
 		version = "1.0.0";
 
-		author[]= {"BlackFire [CVO]","Overlord Zorn [CVO]"};
+		authors[]= {"BlackFire [CVO]","Overlord Zorn [CVO]"};
         url = "http://chronivoron.net";
 
         // Minimum compatible version. When the game's version is lower, pop-up warning will appear when launching the game.
@@ -36,7 +36,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-0 Company Commander";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-10-COY-CO.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-10-COY-CO.paa";
 		textureVehicle = "";
 	};
 	
@@ -44,7 +44,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-0 Company";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-10-COY.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-10-COY.paa";
 		textureVehicle = "";
 	};
 	
@@ -52,7 +52,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-6 Platoon Commander";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-16-pl-CO.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-16-pl-CO.paa";
 		textureVehicle = "";
 	};
 
@@ -60,7 +60,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-6 Platoon Sergant";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-16-pl-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-16-pl-TL.paa";
 		textureVehicle = "";
 	};
 
@@ -69,7 +69,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-6 Platoon";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-16-pl.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-16-pl.paa";
 		textureVehicle = "";
 	};
 	
@@ -77,7 +77,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-6 Platoon Medic";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-16-pl-med.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-16-pl-med.paa";
 		textureVehicle = "";
 	};
 
@@ -85,7 +85,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-6 Platoon Engineer";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-16-pl-eng.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-16-pl-eng.paa";
 		textureVehicle = "";
 	};
 	
@@ -94,7 +94,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-1 Squad Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-11-SL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-11-SL.paa";
 		textureVehicle = "";
 	};
 	
@@ -102,7 +102,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-1 Team Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-11-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-11-TL.paa";
 		textureVehicle = "";
 	};
 	
@@ -110,7 +110,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-1";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-11.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-11.paa";
 		textureVehicle = "";
 	};
 	
@@ -118,7 +118,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-1 Medic";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-11-MED.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-11-MED.paa";
 		textureVehicle = "";
 	};
 	
@@ -126,7 +126,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-1 Engineer";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-11-ENG.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-11-ENG.paa";
 		textureVehicle = "";
 	};
 
@@ -134,7 +134,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-2 Squad Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-12-SL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-12-SL.paa";
 		textureVehicle = "";
 	};
 	
@@ -142,7 +142,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-2 Team Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-12-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-12-TL.paa";
 		textureVehicle = "";
 	};
 	
@@ -150,7 +150,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-2";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-12.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-12.paa";
 		textureVehicle = "";
 	};
 	
@@ -158,7 +158,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-2 Medic";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-12-MED.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-12-MED.paa";
 		textureVehicle = "";
 	};
 	
@@ -166,7 +166,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-2 Engineer";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-12-ENG.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-12-ENG.paa";
 		textureVehicle = "";
 	};
 
@@ -174,7 +174,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-3 Squad Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-13-SL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-13-SL.paa";
 		textureVehicle = "";
 	};
 	
@@ -182,7 +182,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-3 Team Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-13-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-13-TL.paa";
 		textureVehicle = "";
 	};
 	
@@ -190,7 +190,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-3";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-13.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-13.paa";
 		textureVehicle = "";
 	};
 	
@@ -198,7 +198,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-3 Medic";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-13-MED.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-13-MED.paa";
 		textureVehicle = "";
 	};
 	
@@ -206,7 +206,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-3 Engineer";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-13-ENG.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-13-ENG.paa";
 		textureVehicle = "";
 	};
 
@@ -214,7 +214,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-4 Squad Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-14-SL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-14-SL.paa";
 		textureVehicle = "";
 	};
 	
@@ -222,7 +222,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-4 Team Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-14-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-14-TL.paa";
 		textureVehicle = "";
 	};
 	
@@ -230,7 +230,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-4";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-14.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-14.paa";
 		textureVehicle = "";
 	};
 	
@@ -238,7 +238,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-4 Medic";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-14-MED.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-14-MED.paa";
 		textureVehicle = "";
 	};
 	
@@ -246,7 +246,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-4 Engineer";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-14-ENG.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-14-ENG.paa";
 		textureVehicle = "";
 	};
 
@@ -254,7 +254,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-5 Squad Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-15-SL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-15-SL.paa";
 		textureVehicle = "";
 	};
 	
@@ -262,7 +262,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-5 Team Leader";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-15-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-15-TL.paa";
 		textureVehicle = "";
 	};
 	
@@ -270,7 +270,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-5";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-15.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-15.paa";
 		textureVehicle = "";
 	};
 	
@@ -278,7 +278,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-5 Medic";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-15-MED.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-15-MED.paa";
 		textureVehicle = "";
 	};
 	
@@ -286,7 +286,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-5 Engineer";
 		author = "CVO";
-		texture = "\cvo_insignia\data\cvo-15-ENG.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-15-ENG.paa";
 		textureVehicle = "";
 	};
 
