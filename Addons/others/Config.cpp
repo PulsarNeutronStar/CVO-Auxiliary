@@ -14,7 +14,7 @@ class CfgPatches {
 
         // Required addons, used for setting load order.
         // When any of the addons is missing, pop-up warning will appear when launching the game.
-        requiredAddons[] = {};
+        requiredAddons[] = {"ace_medical", "ace_interaction","cba_common"};
 
 		// Optional. If this is 1, if any of requiredAddons[] entry is missing in your game the entire config will be ignored and return no error (but in rpt) so useful to make a compat Mod (Since Arma 3 2.14)
 		skipWhenMissingDependencies = 1;
@@ -50,11 +50,11 @@ class CfgFunctions
 {
 	class CVO
 	{
-		class Others
+		class Medical
 		{
 			class fullHeal 
 			{
-				file = "cvo_others\medical\functions\fnc_fullHeal.sqf";  
+				file = "cvo_others\medical\fnc_fullHeal.sqf";  
 			};
 		};
 	}; 

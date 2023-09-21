@@ -4,7 +4,7 @@ class CfgPatches
     {
         // Meta information for editor
         name = "CVO Music";
-        author = "Overlord Zorn";
+        authors[] = {"Overlord Zorn"};
         url = "http://chronivoron.net";
 
         // Minimum compatible version. When the game's version is lower, pop-up warning will appear when launching the game.
@@ -21,9 +21,6 @@ class CfgPatches
         weapons[] = {};
     }
 };
-
-
-
 
 
 class CfgMusic
