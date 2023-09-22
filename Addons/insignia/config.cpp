@@ -60,7 +60,7 @@ class CfgUnitInsignia
 	{
 		displayName = "CVO 1-6 Platoon Sergant";
 		author = "CVO";
-		texture = "cvo\auxiliary\insignia\data\cvo-16-pl-TL.paa";
+		texture = "cvo\auxiliary\insignia\data\cvo-16-pl-sgt.paa";
 		textureVehicle = "";
 	};
 
