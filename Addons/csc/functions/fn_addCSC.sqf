@@ -22,7 +22,7 @@
  * 			["Ace_banana", 100],
  * 			["ace_maptools",100]
  * 		]
- * 	] call cvo_logistics_fnc_addCustomSupplyBoxAceActionToObject;
+ * 	] call CVO_CSC_fnc_addCSC;
  * 	
  * 	[
  * 		"ACM_APD_Unimog", 
@@ -36,7 +36,7 @@
  * 		[
  * 			["B_SCBA_01_F",6]
  * 		]
- * 	] call cvo_logistics_fnc_addCustomSupplyBoxAceActionToObject;
+ * 	] call CVO_CSC_fnc_addCSC;
  * 	
  * 	
  * 	
