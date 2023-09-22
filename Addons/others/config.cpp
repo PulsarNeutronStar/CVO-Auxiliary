@@ -38,14 +38,8 @@ class CfgFunctions
 			class JND_debugv2      // Function name -> Final Function will be: TAG_FNC_FunctionName
 			{
 				file = "cvo\auxiliary\others\fn_JND_debugv2.sqf";
-                preInit = 1;        // force call the function upon mission start, *before* objects areinitialized
                 postInit = 1;       // force call the function upon mission start, *after*  objects areinitialized
-                ext = "sqf";        // Alternative: ".fsm"
-                preStart = 1;       // force call the function upon game start, before title screen, after all addons.
-                recompille = 1;     // recompile the function upon mission start (Functions in editor are always compiled upon mission (re)start)
-                headerType = 0;     //    
 			};
 		};
 	}; 
 };
-

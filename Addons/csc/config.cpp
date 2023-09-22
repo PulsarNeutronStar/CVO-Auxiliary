@@ -35,26 +35,9 @@ class CfgFunctions
 	{
 		class CSC           // Category
 		{
-			class addCSC      		// Function name -> Final Function will be: TAG_FN_filename
-			{
-				file = "cvo\auxiliary\CSC\functions\fn_addCSC.sqf";
-				preInit = 0;        // force call the function upon mission start, *before* objects areinitialized
-                postInit = 0;       // force call the function upon mission start, *after*  objects areinitialized
-                ext = "sqf";        // Alternative: ".fsm"
-                preStart = 0;       // force call the function upon game start, before title screen, after all addons.
-                recompille = 1;     // recompile the function upon mission start (Functions in editor are always compiled upon mission (re)start)
-                headerType = 0;     //    
-			};
-		class spawnCSC      		// Function name -> Final Function will be: TAG_FN_filename
-			{
-				file = "cvo\auxiliary\CSC\functions\fn_spawnCSC.sqf";
-                preInit = 0;        // force call the function upon mission start, *before* objects areinitialized
-                postInit = 0;       // force call the function upon mission start, *after*  objects areinitialized
-                ext = "sqf";        // Alternative: ".fsm"
-                preStart = 0;       // force call the function upon game start, before title screen, after all addons.
-                recompille = 1;     // recompile the function upon mission start (Functions in editor are always compiled upon mission (re)start)
-                headerType = 0;     //    
-			};
+			file = "cvo\auxiliary\CSC\functions";
+			class addCSC	{};
+			class spawnCSC  {};
 		};
 	}; 
 };
