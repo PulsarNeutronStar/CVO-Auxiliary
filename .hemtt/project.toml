@@ -27,6 +27,7 @@ major = 0 # Overrides path when set
 minor = 0
 patch = 1
 build = 2 # Optional
+git_hash = 0 # Default: 8
 
 
 [hemtt.launch.default]
@@ -52,7 +53,7 @@ parameters = [
 
 executable = "arma3_x64"        # Default: "arma3_x64"
 
-[hemmt.launch.test]
+[hemtt.launch.test]
 workshop = [
     "450814997", # CBA_A3's Workshop ID
     "463939057", # ACE3
@@ -65,7 +66,7 @@ optionals = [
 ]
 
 parameters = [
-#    "C:\Users\Dennis Zorn\Documents\Arma 3 - Other Profiles\Overlord%20Zorn\missions\test.Stratis\mission.sqm",
+    "C:\\Users\\Dennis Zorn\\Documents\\Arma 3 - Other Profiles\\Overlord%20Zorn\\missions\\test.Stratis\\mission.sqm",
     "-skipIntro",           # These parameters are passed to the Arma 3 executable
     "-noSplash",            # They do not need to be added to your list
     "-showScriptErrors",    # You can add additional parameters here
