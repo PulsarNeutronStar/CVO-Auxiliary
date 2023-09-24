@@ -45,9 +45,8 @@ class CfgFunctions
 		class Music           // Category
 		{
 			file = "z\cvo_aux\addons\music\functions";
-			class cvo_music	{
-                postInit = 1;
-            };
+			class cvo_music	{    postInit = 1;  };
+    	    class cvo_music_play {};
 		};
 	}; 
 };
