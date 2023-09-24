@@ -1,6 +1,6 @@
 name = "24th Chorni Voron - Auxiliary Mod"
-prefix = "auxiliary"
-mainprefix = "cvo"
+prefix = "cvo_aux"
+mainprefix = "z"
 
 [properties]
 author = "CVO Team - Mr. Zorn"
@@ -15,6 +15,7 @@ include = [
     "/img/*.paa",
     "logo_ca.paa",
     "logo_co.paa",
+    "*.bikey"
 ]
 exclude = [
     "*.psd",        # By default this list is empty
@@ -26,7 +27,7 @@ exclude = [
 major = 0 # Overrides path when set
 minor = 0
 patch = 1
-build = 2 # Optional
+build = 3 # Optional
 git_hash = 0 # Default: 8
 
 
@@ -73,5 +74,4 @@ parameters = [
     "-debug",
     "-filePatching",
     "-window",
-
 ]
