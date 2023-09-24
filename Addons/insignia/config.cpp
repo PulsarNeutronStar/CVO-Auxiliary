@@ -1,6 +1,6 @@
 class CfgPatches {
 
-	class CVO_Insignia2
+	class CVO_Insignia
 	{
 		// Meta information for editor
         name = "CVO Insignias";
