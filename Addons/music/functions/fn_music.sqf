@@ -8,8 +8,8 @@
  * None
  *
  * Example:
- * ["postInit"] call cvo_fnc_music;
- * ["leaveBase"] call cvo_fnc_music;
+ * ["postInit"] call cvo_music_fnc_music;
+ * ["leaveBase"] call cvo_music_fnc_music;
  *
  * Public: i guess so?
 */
@@ -30,12 +30,17 @@ CVO_Music_Queue = [];
 
 addMusicEventHandler ["MusicStart", { 
 	params ["_musicClassname", "_ehId"];
-	hint str _this;
+	CVO_Music_isPLaying = true;
 	}];
 
 addMusicEventHandler ["MusicStop", {
 	params ["_musicClassname", "_ehId"];
-	hint str _this;
+	CVO_Music_isPLaying = false;
+	if (count CVO_Music_Queue > 0) then {
+		
+	}; 
+
+
 	}];
 
 // ############################################################
@@ -61,6 +66,8 @@ addMusicEventHandler ["MusicStop", {
 // ############################################################
 // ###### Adds individual Nodes
 
+	_action = ["cvo_music_zeus_Stop_and_Fade","Stop and Fade","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",{[10] remoteExec ["cvo_music_fnc_fadeAndStop", -2]},{true}] call ace_interact_menu_fnc_createAction;
+	[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
 	_action = ["cvo_music_zeus_pl_leaveBase","Leave Base","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["leaveBase"] call cvo_fnc_music},{true}] call ace_interact_menu_fnc_createAction;
 	[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
