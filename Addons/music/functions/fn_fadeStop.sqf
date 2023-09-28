@@ -9,22 +9,31 @@
  * The return value <BOOL>
  *
  * Example:
- * ["something", player] call ace_common_fnc_imanexample
+ * ["something", player] call cvo_music_fnc_fadeStop;
  *
  * Public: yes
  */
 
 if (!hasInterface) exitWith {};
-if (!canSuspend)   exitWith {	_this spawn cvo_music_fnc_fadeAndStop;	};
 
 params [
-	["_fadeTime", 5, [0]]
+	["_fadeTime", 5, [0]],
+	["_clearQueue", false, [false]]
 ];
 
 if (CVO_Music_isPLaying) do {
 	private _musicVolume = musicVolume;
 	_fadeTime fadeMusic 0;
-	sleep (_fadeTime + 1);
-	playMusic "";
-	1 fadeMusic _musicVolume;
+	[
+		{	playMusic "";
+			1 fadeMusic _this;	},		// Code
+		_musicVolume,					// Parameters
+		_fadeTime						// Time To wait
+	] call CBA_fnc_waitAndExecute;
+
+	if (_clearQueue) then {
+		CVO_Music_Queue = [];
+		publicVariableServer "CVO_Music_Queue";
+	};
 };
+
