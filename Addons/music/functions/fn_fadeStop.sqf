@@ -14,26 +14,22 @@
  * Public: yes
  */
 
-if (!hasInterface) exitWith {};
-
 params [
-	["_fadeTime", 5, [0]],
-	["_clearQueue", false, [false]]
+	["_fadeTime", 5, [0]]
 ];
 
-if (CVO_Music_isPLaying) do {
+if (!isNil "CVO_Music_isFading") exitWith {};
+
+if (CVO_Music_isPLaying) then {
+	CVO_Music_isFading = true;
 	private _musicVolume = musicVolume;
 	_fadeTime fadeMusic 0;
 	[
 		{	playMusic "";
-			1 fadeMusic _this;	},		// Code
+			1 fadeMusic _this;
+			CVO_Music_isFading = nil;	},		// Code
 		_musicVolume,					// Parameters
-		_fadeTime						// Time To wait
+		(_fadeTime + 1)					// Time To wait
 	] call CBA_fnc_waitAndExecute;
-
-	if (_clearQueue) then {
-		CVO_Music_Queue = [];
-		publicVariableServer "CVO_Music_Queue";
-	};
 };
 

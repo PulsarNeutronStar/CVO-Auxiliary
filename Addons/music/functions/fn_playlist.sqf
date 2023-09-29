@@ -15,88 +15,99 @@
 */
 
 
-params [	["_playlist", "", [""]]];
+params [	["_playlist", "", [""]]		];
 
 
 if (_playlist == "") exitWith {diag_log "[CVO] [MUSIC] - no playlist defined"};
 
 if (_playlist isEqualTo "postInit") exitWith {
 
-if (isServer) then {CVO_Music_Queue = [];};
+	if (isServer) then {CVO_Music_Queue = [];};
 
-// ############################################################
-// ###### Adds Music Event Handler
-// ############################################################
+	// ############################################################
+	// ###### Adds Music Event Handler
+	// ############################################################
 
-if (isServer) then {
-	addMusicEventHandler ["MusicStart", { 
-		params ["_musicClassname", "_ehId"];
-		CVO_Music_isPLaying = true;
-		systemChat "[CVO][Music] Start";
-	}];
+	if (isServer) then {
+		cvo_music_isplaying = false;
 
-	addMusicEventHandler ["MusicStop", {
-		params ["_musicClassname", "_ehId"];
-		CVO_Music_isPLaying = false;
-		systemChat "[CVO][Music] Stop";
-		if (count CVO_Music_Queue > 0) then {
-			systemChat "[CVO][Music] Entries in CVO Music Queue";
-			[	{["Next"] call cvo_music_fnc_play; }, 
-				[], 60 + ceil random 54 * 10] call CBA_fnc_waitAndExecute;
-			
-		}; 
-	}];
-};
+		addMusicEventHandler ["MusicStart", { 
+			params ["_musicClassname", "_ehId"];
+			CVO_Music_isPLaying = true;
+			systemChat "[CVO][Music] Start";
+		}];
 
-
-if (hasInterface) then {
-	addMusicEventHandler ["MusicStart", { 
-		params ["_musicClassname", "_ehId"];
-		if (CVO_CBA_musicDisplay) then {
-			systemChat format ["[CVO][Music] Now Playing: %1", _musicClassname];
-			if (getAudioOptionVolumes#1 < 0.15) then {
-				systemChat format ["[CVO][Music] Your Music Volume is low at %1%2", (getAudioOptionVolumes#1 * 100),"%"];
+		addMusicEventHandler ["MusicStop", {
+			params ["_musicClassname", "_ehId"];
+			CVO_Music_isPLaying = false;
+			systemChat "[CVO][Music] Stop";
+			if (count CVO_Music_Queue > 0) then {
+				systemChat "[CVO][Music] Entries in CVO Music Queue";
+				[	{["Next"] call cvo_music_fnc_play; }, 
+					[], 60 + ceil random 54 * 10] call CBA_fnc_waitAndExecute;
+				
 			}; 
-		};
-	}];
-};
+		}];
+	};
+
+
+	if (hasInterface) then {
+		addMusicEventHandler ["MusicStart", { 
+			params ["_musicClassname", "_ehId"];
+			if (CVO_CBA_musicDisplay) then {
+				systemChat format ["[CVO][Music] Now Playing: %1", _musicClassname];
+				if (getAudioOptionVolumes#1 < 0.15) then {
+					systemChat format ["[CVO][Music] Your Music Volume is low at %1%2", (getAudioOptionVolumes#1 * 100),"%"];
+				}; 
+			};
+		}];
+	};
 
 
 
-// ############################################################
-// ###### Adds Zeus Interaction Nodes
-// ############################################################
+	// ############################################################
+	// ###### Adds Zeus Interaction Nodes
+	// ############################################################
 
-// ############################################################
-// ###### Adds Zeus Parent Node
-	_action = [
-		"cvo_music_zeus_node",
-		"CVO Music",
-		"\A3\ui_f\data\igui\cfg\simpleTasks\types\m_ca.paa",
-		{},
-		{true}
-		] call ace_interact_menu_fnc_createAction;
-	[["ACE_ZeusActions"], _action] call ace_interact_menu_fnc_addActionToZeus;
+	// ############################################################
+	// ###### Adds Zeus Parent Node
+		_action = [
+			"cvo_music_zeus_node",
+			"CVO Music",
+			"\A3\ui_f\data\igui\cfg\simpleTasks\types\m_ca.paa",
+			{},
+			{true}
+			] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
-// ############################################################
-// ###### Adds Zeus Playlist Node
-	_action = ["cvo_music_zeus_playlists","Playlists","\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa",{},{true}] call ace_interact_menu_fnc_createAction;
-	[["ACE_ZeusActions","cvo_music_zeus_node"], _action] call ace_interact_menu_fnc_addActionToZeus;
+	// ############################################################
+	// ###### Adds Zeus Playlist Node
+		_action = ["cvo_music_zeus_playlists","Playlists","\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa",{},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
-// ############################################################
-// ###### Adds individual Nodes
+	// ############################################################
+	// ###### Adds individual Nodes
 
-	_action = ["cvo_music_zeus_fadeFade","Fade and Stop current Music","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",{[10] remoteExec ["cvo_music_fnc_fadeStop", -2]},{true}] call ace_interact_menu_fnc_createAction;
-	[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
+	// ###### FadeStop
+		_action = ["cvo_music_zeus_fadeFade","Fade and Stop current Music","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",
+		{	"fadeStop" remoteExecCall ["cvo_music_fnc_play", 2];	},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
-	_action = ["cvo_music_zeus_pl_leaveBase","Leave Base","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["leaveBase"] call cvo_fnc_music},{true}] call ace_interact_menu_fnc_createAction;
-	[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
+		_action = ["cvo_music_zeus_fadeFadeClear","Fade and Stop and Clear","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",
+		{	"fadeStopClear" remoteExecCall ["cvo_music_fnc_play", 2];	},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
-	_action = ["cvo_music_zeus_pl_tense","Tense","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["tense"] call cvo_fnc_music},{true}] call ace_interact_menu_fnc_createAction;
-	[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
-	_action = ["cvo_music_zeus_pl_ChorniVoron","ChorniVoron","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["ChorniVoron"] call cvo_fnc_music},{true}] call ace_interact_menu_fnc_createAction;
-	[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
+
+	// ###### Playlists
+		_action = ["cvo_music_zeus_pl_leaveBase","Leave Base","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["leaveBase"] call CVO_Music_fnc_playlist},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
+
+		_action = ["cvo_music_zeus_pl_tense","Tense","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["tense"] call CVO_Music_fnc_playlist},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
+
+		_action = ["cvo_music_zeus_pl_ChorniVoron","ChorniVoron","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["ChorniVoron"] call CVO_Music_fnc_playlist},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
 
 	diag_log ("[CVO] [MUSIC] - Zeus Actions Established");
@@ -212,4 +223,6 @@ _selection = switch (_playlist) do {
 
 _song = _selection call BIS_fnc_selectRandom;
 
-_song remoteExec ["cvo_music_fnc_play"]; 
+systemChat format ["Playlist: %2 - Song Selected: %1", _playlist, _song];
+
+_song remoteExecCall ["cvo_music_fnc_play", 2]; 
