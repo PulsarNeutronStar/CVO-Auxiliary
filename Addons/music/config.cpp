@@ -35,3 +35,26 @@ class CfgMusicClasses
 		displayName = "24th Chorni Voron Music";
 	};
 };
+
+
+
+class CfgFunctions
+{
+	class CVO_Music            // Tag
+	{
+		class Music           // Category
+		{
+			file = "z\cvo_aux\addons\music\functions";
+			class playlist	    {    postInit = 1;  };
+    	    class play          {   };
+            class fadeStop      {   };
+		};
+	}; 
+};
+
+
+class Extended_PreInit_EventHandlers {
+    class CVO_Music_CBA_Settings_XHE_PreInit {
+        init = "call compile preprocessFileLineNumbers 'z\cvo_aux\addons\music\XEH_preInit.sqf'";
+    };
+};
