@@ -44,7 +44,7 @@ if (_playlist isEqualTo "postInit") exitWith {
 			if (count CVO_Music_Queue > 0) then {
 				systemChat "[CVO][Music] Entries in CVO Music Queue";
 				[	{["Next"] call cvo_music_fnc_play; }, 
-					[], 60 + ceil random 54 * 10] call CBA_fnc_waitAndExecute;
+					[], 60 + ceil random 24 * 10] call CBA_fnc_waitAndExecute;
 				
 			}; 
 		}];
