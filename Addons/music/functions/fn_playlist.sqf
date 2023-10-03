@@ -28,42 +28,74 @@ if (_playlist isEqualTo "postInit") exitWith {
 	// ###### Adds Music Event Handler
 	// ############################################################
 
-	if (isServer) then {
-		cvo_music_isplaying = false;
-
-		addMusicEventHandler ["MusicStart", { 
-			params ["_musicClassname", "_ehId"];
-			CVO_Music_isPLaying = true;
-			systemChat "[CVO][Music] Start";
-		}];
-
-		addMusicEventHandler ["MusicStop", {
-			params ["_musicClassname", "_ehId"];
-			CVO_Music_isPLaying = false;
-			systemChat "[CVO][Music] Stop";
-			if (count CVO_Music_Queue > 0) then {
-				systemChat "[CVO][Music] Entries in CVO Music Queue";
-				[	{["Next"] call cvo_music_fnc_play; }, 
-					[], 60 + ceil random 24 * 10] call CBA_fnc_waitAndExecute;
-				
-			}; 
-		}];
-	};
-
-
 	if (hasInterface) then {
+
+		CVO_Music_isPlaying = false;
+
 		addMusicEventHandler ["MusicStart", { 
 			params ["_musicClassname", "_ehId"];
+			
+			CVO_Music_isPLaying = true;
+			publicVariableServer "CVO_Music_isPLaying";
+
+			diag_log format ["[CVO][Music][Started] %1", _musicClassname];
+
+
 			if (CVO_CBA_musicDisplay) then {
 				systemChat format ["[CVO][Music] Now Playing: %1", _musicClassname];
-				if (getAudioOptionVolumes#1 < 0.15) then {
-					systemChat format ["[CVO][Music] Your Music Volume is low at %1%2", (getAudioOptionVolumes#1 * 100),"%"];
+				if (getAudioOptionVolumes#1 < 0.05) then {
+					systemChat format ["[CVO][Music] Your Music Volume is low - %1%2", floor((getAudioOptionVolumes#1)*1000)/10,"%"];
 				}; 
 			};
 		}];
+
+				addMusicEventHandler ["MusicStop", { 
+			params ["_musicClassname", "_ehId"];
+			diag_log format ["[CVO][Music][Stopped] %1", _musicClassname];
+			
+			CVO_Music_isPLaying = false;
+			publicVariableServer "CVO_Music_isPLaying";
+		}];
+
 	};
 
 
+	// Uses MusicEventHandler to execute "NEXT" since pubVarEH are not working in non-MP Environment
+	if (!isMultiplayer) then
+	{
+		addMusicEventHandler ["MusicStop", { 
+			params ["_musicClassname", "_ehId"];
+			// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
+			private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
+			diag_log format ["[CVO][Music][MusicStopEH][Next] Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
+			[{	["NEXT"] call cvo_music_fnc_play;	}, [], _delay ] call CBA_fnc_waitAndExecute;	
+		}
+	]
+};
+
+// Uses publicVariableEH to execute "NEXT" since musicEH are not working in Headless Environment (Dedicated Server)
+	if (isServer && isMultiplayer) then {
+
+		CVO_Music_next_inputFilter = [];
+		"CVO_Music_isPLaying" addPublicVariableEventHandler {
+			diag_log format ["[CVO][Music][pubVarEH] _this: %1", _this];
+			if (_this#1 == false) then {
+				// only executes on the first incoming variable change to false
+				if (CVO_Music_next_inputFilter pushBack getPlayerUID player == 0) then {
+					[ { CVO_Music_next_inputFilter = [];
+						diag_log format ["[CVO][Music][pubVarEH][inputFilter]: %1", CVO_Music_next_inputFilter];
+					}, [], 10] call CBA_fnc_waitAndExecute;	// Clears the CVO_Music_next_inputFilter variable for the next execution.
+
+					// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
+					private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
+					diag_log format ["[CVO][Music][pubVarEH][Next] Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
+					[{	["NEXT"] call cvo_music_fnc_play;	}, [], _delay ] call CBA_fnc_waitAndExecute;	
+				};
+				diag_log format ["[CVO][Music][pubVarEH][inputFilter]: %1", CVO_Music_next_inputFilter];
+			};
+		};
+		diag_log format ["[CVO][Music][pubVarEH]: %1", "applied"];		
+	};	
 
 	// ############################################################
 	// ###### Adds Zeus Interaction Nodes
@@ -110,11 +142,11 @@ if (_playlist isEqualTo "postInit") exitWith {
 		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
 
-	diag_log ("[CVO] [MUSIC] - Zeus Actions Established");
+	diag_log ("[CVO][MUSIC] - Zeus Actions Established");
 };
 
 
-diag_log format ["[CVO] [MUSIC] - playlist: %1", _playlist];
+diag_log format ["[CVO][MUSIC] - playlist: %1", _playlist];
 
 private _song;
 private _selection;
