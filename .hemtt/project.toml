@@ -33,8 +33,9 @@ git_hash = 0 # Default: 8
 
 [hemtt.launch.default]
 workshop = [
-    "450814997", # CBA_A3's Workshop ID
-    "463939057", # ACE3
+    "450814997",  # CBA_A3's Workshop ID
+    "463939057",  # ACE3
+    "2369477168", # Advanced Developer Tools
 ]
 
 dlc = [
@@ -50,6 +51,8 @@ parameters = [
     "-debug",
     "-filePatching",
     "-window",
+    "-noPause",
+    "-noPauseAudio",
 ]
 
 executable = "arma3_x64"        # Default: "arma3_x64"
@@ -58,6 +61,7 @@ executable = "arma3_x64"        # Default: "arma3_x64"
 workshop = [
     "450814997", # CBA_A3's Workshop ID
     "463939057", # ACE3
+    "2369477168", # Advanced Developer Tools
 ]
 
 dlc = [
@@ -74,4 +78,6 @@ parameters = [
     "-debug",
     "-filePatching",
     "-window",
+    "-noPause",
+    "-noPauseAudio",
 ]
