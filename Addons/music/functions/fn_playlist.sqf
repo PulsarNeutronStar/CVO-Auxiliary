@@ -27,6 +27,8 @@ if (_playlist isEqualTo "postInit") exitWith {
 	// ############################################################
 
 	["CVO_CBAEvent_Music_StoppedNext", {
+		// Deletes JIP ID
+		remoteExec ["", "CVO_Music_JIP_playMusic"];
 		// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
 		private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
 		diag_log format ["[CVO][Music](CBAEvent)(Next) Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
@@ -57,12 +59,18 @@ if (_playlist isEqualTo "postInit") exitWith {
 			params ["_musicClassname", "_ehId"];
 			diag_log format ["[CVO][Music](Stopped) %1", _musicClassname];
 
-			// Only the client with the oldest Steam64ID will execute the CBA Event
+			// Only the client with the oldest Steam64ID will execute the CBA Event to avoid multiple executions
 			private _array = call BIS_fnc_listPlayers apply { getPlayerUID _x };
 			_array sort true;
-			if (getPlayerUID player == _array select 0) then {["CVO_CBAEvent_Music_StoppedNext"] call CBA_fnc_serverEvent;};
+			diag_log format ["[CVO][Music](Stopped) _array:    %1", _array];
+			diag_log format ["[CVO][Music](Stopped) PlayerUID: %1", getPlayerUID player];
+			if (getPlayerUID player == _array select 0) then {
+				["CVO_CBAEvent_Music_StoppedNext"] call CBA_fnc_serverEvent;
+				diag_log format ["[CVO][Music](Stopped) Making the Call: %1", true];
+			} else {
+				diag_log format ["[CVO][Music](Stopped) Making the Call: %1", false];
+			};
 		}];
-
 	};
 
 	// ############################################################
@@ -108,7 +116,6 @@ if (_playlist isEqualTo "postInit") exitWith {
 
 		_action = ["cvo_music_zeus_pl_ChorniVoron","ChorniVoron","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["ChorniVoron"] call CVO_Music_fnc_playlist},{true}] call ace_interact_menu_fnc_createAction;
 		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
-
 
 	diag_log ("[CVO][MUSIC] - Zeus Actions Established");
 };
