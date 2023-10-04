@@ -24,10 +24,12 @@ params [
 if (!isServer) exitWith {	_this remoteExec ["cvo_music_fnc_play", 2]	};
 
 if (_song == "fadeStop") exitWith {
+	if (!CVO_Music_isPLaying) exitWith {};
 	[10] remoteExecCall ["cvo_music_fnc_fadeStop"];
 };
 if (_song == "fadeStopClear") exitWith {
 	CVO_Music_Queue = [];
+	if (!CVO_Music_isPLaying) exitWith {};
 	[10] remoteExecCall ["cvo_music_fnc_fadeStop"];
 };
 
@@ -36,28 +38,30 @@ if (_song == "NEXT") then {
 	if (count CVO_Music_Queue > 0) then {
 
 		_song = CVO_Music_Queue deleteAt 0;
-		diag_log format ["[CVO][MUSIC] Song from Queue selected: %1", _song];
-		diag_log format ["[CVO][MUSIC] new Queue Array: %1", CVO_MUSIC_Queue];
+		diag_log format ["[CVO][MUSIC](NEXT) %1", _song];
+		diag_log format ["[CVO][MUSIC](updated Queue) %1", CVO_MUSIC_Queue];
 
 	} else {
 
 		_song = "";
-		diag_log format ["[CVO][MUSIC] NEXT not possible - Queue is Empty: %1", CVO_MUSIC_Queue];
+		diag_log format ["[CVO][MUSIC](NEXT) Queue Empty %1", CVO_MUSIC_Queue];
 	};
 };
 
-if (_song == "") exitWith {	diag_log "[CVO] [MUSIC] - no song defined"	};
+if (_song == "") exitWith {	diag_log "[CVO][MUSIC](Play) no song defined"	};
 
 // Plays the song on all clients
 
 if (CVO_Music_isPLaying) then {
 
 	CVO_Music_Queue pushBack _song;
-	diag_log format ["[CVO][MUSIC] Currently Playing a Song - %2 added to CVO Music Queue Array: %1", CVO_MUSIC_Queue, _song];
+	diag_log format ["[CVO][MUSIC](Play) Added to Queue: %1", _song];
 
 } else {
 
 	_song remoteExec ["playMusic"];
-	diag_log format ["[CVO][MUSIC] Now Playing Song: %2 - Music Queue Array: %1", CVO_MUSIC_Queue, _song];
+	CVO_Music_isPLaying = true;
+	diag_log format ["[CVO][MUSIC](Play) Playing: %1 - Queue: %2", _song, CVO_MUSIC_Queue];
+
 };
 

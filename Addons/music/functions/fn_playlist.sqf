@@ -22,80 +22,48 @@ if (_playlist == "") exitWith {diag_log "[CVO] [MUSIC] - no playlist defined"};
 
 if (_playlist isEqualTo "postInit") exitWith {
 
-	if (isServer) then {CVO_Music_Queue = [];};
+	// ############################################################
+	// ###### Add CBA Event
+	// ############################################################
+
+	["CVO_CBAEvent_Music_StoppedNext", {
+		// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
+		private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
+		diag_log format ["[CVO][Music](CBAEvent)(Next) Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
+		[{	["NEXT"] call cvo_music_fnc_play;	}, [], _delay ] call CBA_fnc_waitAndExecute;	
+	}] call CBA_fnc_addEventHandler;
+
+
+
+	if (isServer) then {CVO_Music_Queue = []; CVO_Music_isPlaying = false;};
 
 	// ############################################################
-	// ###### Adds Music Event Handler
+	// ###### Adds CLIENT Music Event Handler
 	// ############################################################
 
 	if (hasInterface) then {
 
-		CVO_Music_isPlaying = false;
+		
 
 		addMusicEventHandler ["MusicStart", { 
 			params ["_musicClassname", "_ehId"];
 			
-			CVO_Music_isPLaying = true;
-			publicVariableServer "CVO_Music_isPLaying";
-
-			diag_log format ["[CVO][Music][Started] %1", _musicClassname];
-
-
-			if (CVO_CBA_musicDisplay) then {
-				systemChat format ["[CVO][Music] Now Playing: %1", _musicClassname];
-				if (getAudioOptionVolumes#1 < 0.05) then {
-					systemChat format ["[CVO][Music] Your Music Volume is low - %1%2", floor((getAudioOptionVolumes#1)*1000)/10,"%"];
-				}; 
-			};
+			diag_log format ["[CVO][Music](Started) %1", _musicClassname];
+			if (CVO_CBA_musicDisplay) 										then {	systemChat format ["[CVO][Music] Now Playing: %1", _musicClassname];	};
+			if (CVO_CBA_musicDisplayLow && getAudioOptionVolumes#1 < 0.05) 	then {	systemChat format ["[CVO][Music] Your Music Volume is low - %1%2", floor((getAudioOptionVolumes#1)*1000)/10,"%"];	}; 
 		}];
 
-				addMusicEventHandler ["MusicStop", { 
+		addMusicEventHandler ["MusicStop", { 
 			params ["_musicClassname", "_ehId"];
-			diag_log format ["[CVO][Music][Stopped] %1", _musicClassname];
-			
-			CVO_Music_isPLaying = false;
-			publicVariableServer "CVO_Music_isPLaying";
+			diag_log format ["[CVO][Music](Stopped) %1", _musicClassname];
+
+			// Only the client with the oldest Steam64ID will execute the CBA Event
+			private _array = call BIS_fnc_listPlayers apply { getPlayerUID _x };
+			_array sort true;
+			if (getPlayerUID player == _array select 0) then {["CVO_CBAEvent_Music_StoppedNext"] call CBA_fnc_serverEvent;};
 		}];
 
 	};
-
-
-	// Uses MusicEventHandler to execute "NEXT" since pubVarEH are not working in non-MP Environment
-	if (!isMultiplayer) then
-	{
-		addMusicEventHandler ["MusicStop", { 
-			params ["_musicClassname", "_ehId"];
-			// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
-			private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
-			diag_log format ["[CVO][Music][MusicStopEH][Next] Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
-			[{	["NEXT"] call cvo_music_fnc_play;	}, [], _delay ] call CBA_fnc_waitAndExecute;	
-		}
-	]
-};
-
-// Uses publicVariableEH to execute "NEXT" since musicEH are not working in Headless Environment (Dedicated Server)
-	if (isServer && isMultiplayer) then {
-
-		CVO_Music_next_inputFilter = [];
-		"CVO_Music_isPLaying" addPublicVariableEventHandler {
-			diag_log format ["[CVO][Music][pubVarEH] _this: %1", _this];
-			if (_this#1 == false) then {
-				// only executes on the first incoming variable change to false
-				if (CVO_Music_next_inputFilter pushBack getPlayerUID player == 0) then {
-					[ { CVO_Music_next_inputFilter = [];
-						diag_log format ["[CVO][Music][pubVarEH][inputFilter]: %1", CVO_Music_next_inputFilter];
-					}, [], 10] call CBA_fnc_waitAndExecute;	// Clears the CVO_Music_next_inputFilter variable for the next execution.
-
-					// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
-					private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
-					diag_log format ["[CVO][Music][pubVarEH][Next] Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
-					[{	["NEXT"] call cvo_music_fnc_play;	}, [], _delay ] call CBA_fnc_waitAndExecute;	
-				};
-				diag_log format ["[CVO][Music][pubVarEH][inputFilter]: %1", CVO_Music_next_inputFilter];
-			};
-		};
-		diag_log format ["[CVO][Music][pubVarEH]: %1", "applied"];		
-	};	
 
 	// ############################################################
 	// ###### Adds Zeus Interaction Nodes
@@ -146,7 +114,7 @@ if (_playlist isEqualTo "postInit") exitWith {
 };
 
 
-diag_log format ["[CVO][MUSIC] - playlist: %1", _playlist];
+diag_log format ["[CVO][MUSIC](playlist selected) %1", _playlist];
 
 private _song;
 private _selection;
