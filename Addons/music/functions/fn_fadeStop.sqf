@@ -1,6 +1,6 @@
 /*
  * Author: [Name of Author(s)]
- * Saves the current musicVolume, fades the current soundtrack for 
+ * To be executed on each client. Saves the current musicVolume, fades the current volume, stops the music then restores the previous musicVolume 
  *
  * Arguments:
  * 0: <Optional> Time to Fade <Number> (Default: 5)
@@ -9,7 +9,8 @@
  * The return value <BOOL>
  *
  * Example:
- * ["something", player] call cvo_music_fnc_fadeStop;
+ * []   remoteExec ["cvo_music_fnc_fadeStop"];
+ * [30] remoteExec ["cvo_music_fnc_fadeStop"];
  *
  * Public: yes
  */
@@ -20,16 +21,13 @@ params [
 
 if (!isNil "CVO_Music_isFading") exitWith {};
 
-if (CVO_Music_isPLaying) then {
-	CVO_Music_isFading = true;
-	private _musicVolume = musicVolume;
-	_fadeTime fadeMusic 0;
-	[
-		{	playMusic "";
-			1 fadeMusic _this;
-			CVO_Music_isFading = nil;	},		// Code
-		_musicVolume,					// Parameters
-		(_fadeTime + 1)					// Time To wait
-	] call CBA_fnc_waitAndExecute;
-};
-
+CVO_Music_isFading = true;
+private _savedMusicVolume = musicVolume;
+_fadeTime fadeMusic 0;
+[
+	{	playMusic "";
+		0 fadeMusic _this;
+		CVO_Music_isFading = nil;	},		// Code
+	_savedMusicVolume,						// Parameters
+	(_fadeTime + 1)							// Time To wait
+] call CBA_fnc_waitAndExecute;
