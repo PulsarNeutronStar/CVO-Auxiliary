@@ -226,6 +226,6 @@ _selection = switch (_playlist) do {
 
 _song = _selection call BIS_fnc_selectRandom;
 
-systemChat format ["Playlist: %2 - Song Selected: %1", _playlist, _song];
+systemChat format ["[CVO][MUSIC](Playlist) %1 - Song: %2", _playlist, _song];
 
 _song remoteExecCall ["cvo_music_fnc_play", 2]; 
