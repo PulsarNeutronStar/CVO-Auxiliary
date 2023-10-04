@@ -29,6 +29,7 @@ if (_playlist isEqualTo "postInit") exitWith {
 	["CVO_CBAEvent_Music_StoppedNext", {
 		// Deletes JIP ID
 		remoteExec ["", "CVO_Music_JIP_playMusic"];
+		CVO_Music_isPlaying = false;
 		// Define Delay and Execute "NEXT" on the server with cba_fnc_waitAndExecute
 		private _delay = CVO_CBA_musicDelayMin + (ceil random CVO_CBA_musicDelayRandom);
 		diag_log format ["[CVO][Music](CBAEvent)(Next) Delay until Next Song: %1 -- Music Queue: %2", _delay, CVO_Music_Queue];
@@ -82,30 +83,25 @@ if (_playlist isEqualTo "postInit") exitWith {
 		_action = [
 			"cvo_music_zeus_node",
 			"CVO Music",
-			"\A3\ui_f\data\igui\cfg\simpleTasks\types\m_ca.paa",
+			"z\cvo_aux\addons\others\img\Raven_Voron_256.paa",
 			{},
 			{true}
 			] call ace_interact_menu_fnc_createAction;
 		[["ACE_ZeusActions"], _action] call ace_interact_menu_fnc_addActionToZeus;
 
+	// ###### FadeStop
+		_action = ["cvo_music_zeus_fadeFade","FadeStop Next","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",
+		{	"fadeStop" remoteExecCall ["cvo_music_fnc_play", 2];	},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node"], _action] call ace_interact_menu_fnc_addActionToZeus;
+
+		_action = ["cvo_music_zeus_fadeFadeClear","FadeStop Clear","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",
+		{	"fadeStopClear" remoteExecCall ["cvo_music_fnc_play", 2];	},{true}] call ace_interact_menu_fnc_createAction;
+		[["ACE_ZeusActions","cvo_music_zeus_node"], _action] call ace_interact_menu_fnc_addActionToZeus;
+
 	// ############################################################
 	// ###### Adds Zeus Playlist Node
 		_action = ["cvo_music_zeus_playlists","Playlists","\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa",{},{true}] call ace_interact_menu_fnc_createAction;
 		[["ACE_ZeusActions","cvo_music_zeus_node"], _action] call ace_interact_menu_fnc_addActionToZeus;
-
-	// ############################################################
-	// ###### Adds individual Nodes
-
-	// ###### FadeStop
-		_action = ["cvo_music_zeus_fadeFade","Fade and Stop current Music","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",
-		{	"fadeStop" remoteExecCall ["cvo_music_fnc_play", 2];	},{true}] call ace_interact_menu_fnc_createAction;
-		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
-
-		_action = ["cvo_music_zeus_fadeFadeClear","Fade and Stop and Clear","\A3\ui_f\data\igui\cfg\simpleTasks\types\exit_ca.paa",
-		{	"fadeStopClear" remoteExecCall ["cvo_music_fnc_play", 2];	},{true}] call ace_interact_menu_fnc_createAction;
-		[["ACE_ZeusActions","cvo_music_zeus_node","cvo_music_zeus_playlists"], _action] call ace_interact_menu_fnc_addActionToZeus;
-
-
 
 	// ###### Playlists
 		_action = ["cvo_music_zeus_pl_leaveBase","Leave Base","\A3\ui_f\data\igui\cfg\simpleTasks\types\takeoff_ca.paa",{["leaveBase"] call CVO_Music_fnc_playlist},{true}] call ace_interact_menu_fnc_createAction;
