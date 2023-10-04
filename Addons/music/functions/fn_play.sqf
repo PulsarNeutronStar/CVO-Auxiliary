@@ -59,7 +59,7 @@ if (CVO_Music_isPLaying) then {
 
 } else {
 
-	_song remoteExec ["playMusic"];
+	_song remoteExec ["playMusic",0,"CVO_Music_JIP_playMusic"];
 	CVO_Music_isPLaying = true;
 	diag_log format ["[CVO][MUSIC](Play) Playing: %1 - Queue: %2", _song, CVO_MUSIC_Queue];
 
