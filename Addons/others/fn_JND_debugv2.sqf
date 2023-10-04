@@ -181,7 +181,7 @@ fnc_debugv2_overwrite = {
 							_name = _text select [2, _enter-2];
 						};
 					};
-					diag_log ["Save",_text];
+					diag_log ["[JND]Save",_text];
 
 					uiNameSpace setVariable ["jn_debugConsole_index_saved",_index];
 					uiNameSpace setVariable [format ["jn_debugConsole_%1",_index],profilenamespace getVariable (format ["jn_debugConsole_%1",_index])];
