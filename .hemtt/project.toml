@@ -20,14 +20,14 @@ include = [
 exclude = [
     "*.psd",        # By default this list is empty
     "*.md",
-    ".vscode",
+    "/.vscode/",
 ]
 
 [version]
 major = 0 # Overrides path when set
 minor = 1
 patch = 1
-git_hash = 0 # Default: 8
+git_hash = 4 # Default: 8
 
 
 [hemtt.launch.default]
@@ -70,7 +70,7 @@ optionals = [
 ]
 
 parameters = [
-    "C:\\Users\\Dennis Zorn\\Documents\\Arma 3 - Other Profiles\\Overlord%20Zorn\\missions\\test.Stratis\\mission.sqm",
+    "\test-mission\\test.Stratis\\mission.sqm",
     "-skipIntro",           # These parameters are passed to the Arma 3 executable
     "-noSplash",            # They do not need to be added to your list
     "-showScriptErrors",    # You can add additional parameters here
