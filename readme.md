@@ -118,6 +118,8 @@ this setFlagTexture "z\cvo_aux\addons\others\img\flag_voron_olive_2048.paa";
 ```
 
 ### Leaderportrait
-tba.
-
-"z\cvo_aux\addons\others\img\Leaderportrait.paa"
+tba. 
+Classname  `GalleryFrame_01_large_portrait_F`
+Texture #0 `z\cvo_aux\addons\others\img\Leaderportrait.paa`
+Note: Seems like it doesnt like `"`
+Old Path:  `z\cvo_aux\img\Leaderportrait.paa`
