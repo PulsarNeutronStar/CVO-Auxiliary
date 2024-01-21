@@ -40,7 +40,7 @@
  * 	
  * 	
  * 	
- *
+ * Effect: Local - make sure its called on each client.
  * Public: yes
  *
  *
