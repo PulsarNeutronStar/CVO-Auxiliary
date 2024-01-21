@@ -29,13 +29,8 @@ class CfgPatches {
 
 };
 /*
-class CfgFunctions
+class CfgMarkers
 {
-	class CVO_Others            // Tag
-	{
-		class Others           // Category
-		{
-		};
-	}; 
+	#include "markers.hpp"	
 };
 */
