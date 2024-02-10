@@ -1,3 +1,3 @@
 @echo off
-hemtt.exe launch test
+hemtt launch test
 pause
