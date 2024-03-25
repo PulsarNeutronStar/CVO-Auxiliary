@@ -28,18 +28,9 @@ class CfgPatches {
 	};
 
 };
-
-class CfgFunctions
+/*
+class CfgMarkers
 {
-	class CVO_Others            // Tag
-	{
-		class Others           // Category
-		{
-			class JND_debugv2      // Function name -> Final Function will be: TAG_FNC_FunctionName
-			{
-				file = "cvo\auxiliary\others\fn_JND_debugv2.sqf";
-                postInit = 1;       // force call the function upon mission start, *after*  objects areinitialized
-			};
-		};
-	}; 
+	#include "markers.hpp"	
 };
+*/

@@ -35,7 +35,7 @@ class CfgFunctions
 	{
 		class CSC           // Category
 		{
-			file = "cvo\auxiliary\CSC\functions";
+			file = "z\cvo_aux\addons\CSC\functions";
 			class addCSC	{};
 			class spawnCSC  {};
 		};

@@ -40,7 +40,7 @@
  * 	
  * 	
  * 	
- *
+ * Effect: Local - make sure its called on each client.
  * Public: yes
  *
  *
@@ -59,7 +59,7 @@ params [
 // ### Creates an Array to store all already existing "Menu Nodes" when the Array doesnt exist yet.
 if (isNil "CVO_CSC_array") then {
 	CVO_CSC_array = [];
-	diag_log ("[CVO] [LOGISTICS] (CSC) created CVO_CSC_Array.");
+	diag_log ("[CVO][CSC] created CVO_CSC_Array.");
 };
 
 // ### Creates CSC Menu Node if the _spawner does not carries a CSC Menu Node yet.
@@ -135,4 +135,4 @@ if (typeName _spawner isEqualTo "OBJECT") then {
 	] call ace_interact_menu_fnc_addActionToClass;		
 
 };
-diag_log format ["[CVO] [LOGISTICS] (CSC) - Successful => Carrier: %1 - CSC: %2", _spawner, _name];
+diag_log format ["[CVO][CSC] New CSC Established Sucessfully => Carrier: %1 - CSC: %2", _spawner, _name];
