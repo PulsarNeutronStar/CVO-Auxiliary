@@ -50,10 +50,18 @@ if (_playlist isEqualTo "postInit") exitWith {
 
 		addMusicEventHandler ["MusicStart", { 
 			params ["_musicClassname", "_ehId"];
-			
-			diag_log format ["[CVO][Music](Started) %1", _musicClassname];
-			if (CVO_CBA_musicDisplay) 										then {	systemChat format ["[CVO][Music] Now Playing: %1", _musicClassname];	};
-			if (CVO_CBA_musicDisplayLow && getAudioOptionVolumes#1 < 0.05) 	then {	systemChat format ["[CVO][Music] Your Music Volume is low - %1%2", floor((getAudioOptionVolumes#1)*1000)/10,"%"];	}; 
+
+			_path = (configFile >> "CfgMusic" >> _musicClassname);
+			_name = [_path,"name", "Not Found"] call BIS_fnc_returnConfigEntry;
+
+			_str switch (missionNamespace getVariable ["CVO_CBA_MusicDisplayString", "NAME"]) do {
+				case "NAME": { _name };
+				default { _musicClassname };
+			};
+
+			diag_log format ["[CVO][Music](Started) %1 ## classname: %2", _name, _musicClassname];
+			if (CVO_CBA_musicDisplay) 										then {	systemChat format ["[CVO][Music] Now Playing: %1", _str];	};
+			if (CVO_CBA_musicDisplayLow && getAudioOptionVolumes#1 < 0.05) 	then {	systemChat format ["[CVO][Music] Your Music Volume is low @ %1%2", floor((getAudioOptionVolumes#1)*1000)/10,"%"];	}; 
 		}];
 
 		addMusicEventHandler ["MusicStop", { 
