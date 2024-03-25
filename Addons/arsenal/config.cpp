@@ -38,7 +38,6 @@ class CfgFunctions
 			file = "cvo\auxiliary\arsenal\functions";
 			class open	{};
 			class update  {};
-			class medical_tab {postInit	= 1;};
 		};
 		class CVO_Arsenal_GreenMag
 		{
